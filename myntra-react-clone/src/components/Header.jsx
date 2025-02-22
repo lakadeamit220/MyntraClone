@@ -1,14 +1,15 @@
-import logo from "../../public/images/myntra_logo.webp";
+import logo from "../images/myntra_logo.webp";
 import { IoPerson } from "react-icons/io5";
 import { FaHeartbeat, FaShoppingBag } from "react-icons/fa";
+import { Link, Links } from "react-router-dom";
 export default function Header() {
   return (
     <>
       <header>
         <div className="logo_container">
-          <a href="#">
+          <Link to="/">
             <img className="myntra_home" src={logo} alt="Myntra Home" />
-          </a>
+          </Link>
         </div>
         <nav className="nav_bar">
           <a href="#">Men</a>
@@ -38,11 +39,11 @@ export default function Header() {
             <span className="action_name">Wishlist</span>
           </div>
 
-          <a className="action_container" href="pages/bag.html">
-          <FaShoppingBag/>
+          <Link className="action_container" to="/bag">
+            <FaShoppingBag />
             <span className="action_name">Bag</span>
             <span className="bag-item-count">0</span>
-          </a>
+          </Link>
         </div>
       </header>
     </>
