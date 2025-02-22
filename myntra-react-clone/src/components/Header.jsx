@@ -1,15 +1,13 @@
-import logo from "../images/myntra_logo.webp"
+import logo from "../../public/images/myntra_logo.webp";
+import { IoPerson } from "react-icons/io5";
+import { FaHeartbeat, FaShoppingBag } from "react-icons/fa";
 export default function Header() {
   return (
     <>
       <header>
         <div className="logo_container">
           <a href="#">
-            <img
-              className="myntra_home"
-              src={logo}
-              alt="Myntra Home"
-            />
+            <img className="myntra_home" src={logo} alt="Myntra Home" />
           </a>
         </div>
         <nav className="nav_bar">
@@ -31,23 +29,17 @@ export default function Header() {
         </div>
         <div className="action_bar">
           <div className="action_container">
-            <span className="material-symbols-outlined action_icon">
-              person
-            </span>
+            <IoPerson />
             <span className="action_name">Profile</span>
           </div>
 
           <div className="action_container">
-            <span className="material-symbols-outlined action_icon">
-              favorite
-            </span>
+            <FaHeartbeat />
             <span className="action_name">Wishlist</span>
           </div>
 
           <a className="action_container" href="pages/bag.html">
-            <span className="material-symbols-outlined action_icon">
-              shopping_bag
-            </span>
+          <FaShoppingBag/>
             <span className="action_name">Bag</span>
             <span className="bag-item-count">0</span>
           </a>
