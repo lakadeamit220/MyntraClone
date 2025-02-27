@@ -1,26 +1,17 @@
 import HomeItem from "../components/HomeItem";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  const item = {
-    id: "004",
-    image: "images/4.jpg",
-    company: "ADIDAS",
-    item_name: "Indian Cricket ODI Jersey",
-    original_price: 999,
-    current_price: 999,
-    discount_percentage: 0,
-    return_period: 14,
-    delivery_date: "10 Oct 2025",
-    rating: {
-      stars: 5.0,
-      count: 10,
-    },
-  };
+  const items = useSelector((store) => store.items);
 
   return (
+    <main>
       <div className="items-container">
-        <HomeItem item={item} />
+        {items.map((item) => (
+          <HomeItem key={item.id} item={item} />
+        ))}
       </div>
+    </main>
   );
 };
 

@@ -1,13 +1,29 @@
-export default function BagSummary({
-  totalItem,
-  totalMRP,
-  totalDiscount,
-  finalPayment,
-}) {
+import { useSelector } from "react-redux";
+
+const BagSummary = () => {
+  const bagItemIds = useSelector((state) => state.bag);
+  const items = useSelector((state) => state.items);
+  const finalItems = items.filter((item) => {
+    const itemIndex = bagItemIds.indexOf(item.id);
+    return itemIndex >= 0;
+  });
+
+  const CONVENIENCE_FEES = 99;
+  let totalItem = bagItemIds.length;
+  let totalMRP = 0;
+  let totalDiscount = 0;
+
+  finalItems.forEach((bagItem) => {
+    totalMRP += bagItem.original_price;
+    totalDiscount += bagItem.original_price - bagItem.current_price;
+  });
+
+  let finalPayment = totalMRP - totalDiscount + CONVENIENCE_FEES;
+
   return (
     <div className="bag-summary">
       <div className="bag-details-container">
-        <div className="price-header">PRICE DETAILS ({totalItem} Items)</div>
+        <div className="price-header">PRICE DETAILS ({totalItem} Items) </div>
         <div className="price-item">
           <span className="price-item-tag">Total MRP</span>
           <span className="price-item-value">₹{totalMRP}</span>
@@ -27,10 +43,12 @@ export default function BagSummary({
           <span className="price-item-tag">Total Amount</span>
           <span className="price-item-value">₹{finalPayment}</span>
         </div>
-        <button className="btn-place-order">
-          <div className="css-xjhrni">PLACE ORDER</div>
-        </button>
       </div>
+      <button className="btn-place-order">
+        <div className="css-xjhrni">PLACE ORDER</div>
+      </button>
     </div>
   );
-}
+};
+
+export default BagSummary;
